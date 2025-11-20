@@ -22,14 +22,28 @@
         body {
             font-family: var(--font-principale);
             color: #333;
+            /* 🚨 Modificato il layout per scrolling mobile 🚨 */
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Centra il contenuto verticale */
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
+        
+            /* Rimosso justify-content: center per evitare che il contenuto venga tagliato */
+            min-height: 100vh; /* Mantieni l'altezza minima */
             padding: 20px;
             padding-bottom: 60px; 
+            background-color: #333;
+        }
+
+        #background-fixed-wrapper {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('sfondo.jpg') no-repeat center center; 
+            background-size: cover;
+            overflow: hidden; 
+            z-index: -1; 
         }
 
         /* ⭐️ Stile per il Titolo Principale ⭐️ */
@@ -44,6 +58,8 @@
             margin-bottom: 40px;
             /* 🚨 Sposta il titolo più in alto per le stelle 🚨 */
             margin-top: 0vh; /* Regola questo valore per posizionarlo correttamente */
+            position: relative; 
+            z-index: 1;
         }
 
         /* Contenitore principale della Card */
@@ -54,7 +70,10 @@
             box-shadow: 0 10px 40px rgb(255, 255, 255);
             max-width: 450px; 
             width: 100%; 
-            border: 5px solid var(--colore-oro-natale); 
+            border: 5px solid var(--colore-oro-natale);
+            position: relative; 
+            z-index: 1;
+            margin-bottom: 20px;
         }
 
         /* Testo fisso "LA PAROLA DEL GIORNO È" */
@@ -159,24 +178,6 @@
             background-color: var(--colore-bianco-neve); 
             box-shadow: 0 -2px 10px rgba(0,0,0,0.1); 
             z-index: 10; 
-        }
-
-        #background-fixed-wrapper {
-            position: fixed; /* Usiamo absolute/fixed per il posizionamento */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-    
-            /* Applichiamo qui le proprietà di sfondo: */
-            background: url('sfondo.jpg') no-repeat center center; 
-            background-size: cover;
-    
-            /* 💡 Questo è fondamentale: impedisce lo scrolling del wrapper */
-            overflow: hidden; 
-    
-            /* Mettilo dietro tutti gli altri elementi */
-            z-index: -1; 
         }
 
         /* ❄️ Effetto Neve che Cade ❄️ */
