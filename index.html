@@ -22,8 +22,6 @@
         body {
             font-family: var(--font-principale);
             color: #333;
-            background: url('sfondo.jpg') no-repeat center center fixed; 
-            background-size: cover;
             display: flex;
             flex-direction: column;
             justify-content: center; /* Centra il contenuto verticale */
@@ -43,9 +41,9 @@
             text-align: center;
             text-shadow: 2px 2px 5px rgb(255, 255, 255); 
             line-height: 1.1;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
             /* 🚨 Sposta il titolo più in alto per le stelle 🚨 */
-            margin-top: -15vh; /* Regola questo valore per posizionarlo correttamente */
+            margin-top: 0vh; /* Regola questo valore per posizionarlo correttamente */
         }
 
         /* Contenitore principale della Card */
@@ -127,6 +125,24 @@
             z-index: 10; 
         }
 
+        #background-fixed-wrapper {
+            position: fixed; /* Usiamo absolute/fixed per il posizionamento */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+    
+            /* Applichiamo qui le proprietà di sfondo: */
+            background: url('sfondo.jpg') no-repeat center center; 
+            background-size: cover;
+    
+            /* 💡 Questo è fondamentale: impedisce lo scrolling del wrapper */
+            overflow: hidden; 
+    
+            /* Mettilo dietro tutti gli altri elementi */
+            z-index: -1; 
+        }
+
         /* ❄️ Effetto Neve che Cade ❄️ */
         #snow-container {
             position: fixed;
@@ -137,6 +153,7 @@
             pointer-events: none; /* Permette di cliccare gli elementi sottostanti */
             z-index: 9999; /* Assicura che la neve sia sopra a tutto */
             overflow: hidden; /* Nasconde i fiocchi che escono dai bordi */
+            z-index: 10; /* Assicura che la neve sia sopra il wrapper, ma sotto il contenuto */
         }
 
         .snowflake {
@@ -158,9 +175,9 @@
         @media (max-width: 576px) {
             .titolo-header {
                 font-size: 2.5em; 
-                margin-bottom: 20px;
+                margin-bottom: 40px;
                 /* 🚨 Sposta il titolo più in alto su mobile 🚨 */
-                margin-top: -18vh; /* Regola questo valore per mobile */
+                margin-top: 5vh; /* Regola questo valore per mobile */
             }
             .card-container {
                 padding: 30px 20px; 
@@ -188,8 +205,11 @@
     </style>
 </head>
 <body>
-
-  <div id="snow-container"></div>
+    
+    <div id="background-fixed-wrapper">
+    <div id="snow-container"></div>
+    </div>
+    
     <header>
         <h1 class="titolo-header">CALENDARIO<br>DELL'AVVENTO</h1>
     </header>
@@ -215,7 +235,6 @@
     <footer>
         <p class="small mb-0 opacity-75">&copy; Calendario dell'Avvento di Aurora Dicristofaro</p>
     </footer>
-
 
     <script>
         // Logica JavaScript (Identica a prima)
